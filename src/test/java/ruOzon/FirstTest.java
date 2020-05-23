@@ -1,7 +1,7 @@
 package ruOzon;
 
 import ruOzon.listeners.TestListener;
-import ruOzon.pages.Page1ObjectMain;
+import ruOzon.pages.PageMain;
 import ruOzon.util.SupportTestSettings;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -16,7 +16,7 @@ public class FirstTest extends SupportTestSettings {
 
     @Test
     public void firstTest() {
-        Page1ObjectMain pageObjectMain = new Page1ObjectMain(driver, webDriverWait);
+        PageMain pageObjectMain = new PageMain(driver, webDriverWait);
         pageObjectMain.loginIn();
         pageObjectMain.inNumber();
         pageObjectMain.clickNumber();

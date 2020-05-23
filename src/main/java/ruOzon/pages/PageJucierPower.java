@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class Page3ObjectMain {
+public class PageJucierPower {
 
     WebDriver driver;
     WebDriverWait webDriverWait;
@@ -24,15 +24,15 @@ public class Page3ObjectMain {
     private static final String Power = "//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[9]/div[2]/div[2]/div[1]/input";
     private static final String Max = "//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[2]/input";
     private static final By dotsLocator = By.cssSelector("[class=\"dots dots-blue\"]");
-    private static final String Cost = "//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/button/div/span";
+    private static final String Cost = "//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div[1]/button/div/span";
     private static final String OneJuicer = "//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div[1]/div/div[1]/div/div/div[3]/div[2]/div/div/button";
     private static final String OurJuicer ="//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div[1]/div/div[1]/div/div/div[1]";
-    private static final String ClickBut = "//*[@id=\"__ozon\"]/div/div[1]/div[3]/div[3]/div[2]/div/div/div/div/div[2]/div/div/div/div/div[5]/div/div/div/div/div/div[2]/button";
+    private static final String ClickBut = "//*[@id=\"__ozon\"]/div/div[1]/div[3]/div[3]/div[2]/div/div/div/div/div[2]/div/div/div/div/div[6]/div/div/div/div/div/div[2]/button";
     private static final String Court = "[data-widget=\"cart\"]";
     private static final String Cookie = "//*[@id=\"__ozon\"]/div/div[3]/div/button";
 
 
-    public Page3ObjectMain(WebDriver driver, WebDriverWait webDriverWait) {
+    public PageJucierPower(WebDriver driver, WebDriverWait webDriverWait) {
         this.driver = driver;
         this.webDriverWait = webDriverWait;
     }
@@ -54,7 +54,6 @@ public class Page3ObjectMain {
 
     @Step("Click to show Juice")
     public void clickJuicer() {
-        closeCookie();
         WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Juice)));
         WebElement element = driver.findElement(By.xpath(Juice));
@@ -94,13 +93,26 @@ public class Page3ObjectMain {
         element.sendKeys(Keys.ENTER);
     }
 
+    @Step("Writes min power")
+    public void minPower() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 10);
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(Power)));
+        WebElement element = driver.findElement(By.xpath(Power));
+        element.sendKeys(Keys.CONTROL + "a");
+        element.sendKeys("1000");
+        try {
+            webDriverWait.until(ExpectedConditions.invisibilityOfElementLocated(dotsLocator));
+        }
+        catch(NoSuchElementException e) {}
+        element.sendKeys(Keys.ENTER);
+    }
+
     @Step("Chooses the cheapest")
     public void chooseCheap() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
         webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("[role=\"combobox\"]")));
         WebElement element = driver.findElement(By.cssSelector("[role=\"combobox\"]"));
         element.click();
-        element.sendKeys(Keys.ARROW_DOWN);
         element.sendKeys(Keys.ARROW_DOWN);
         element.sendKeys(Keys.ARROW_DOWN);
         element.sendKeys(Keys.ENTER);
@@ -117,7 +129,6 @@ public class Page3ObjectMain {
 
     @Step("+1 jucier")
     public void oneJuicier() {
-        closeCookie();
         WebElement element = driver.findElement(By.xpath(OneJuicer));
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
@@ -131,6 +142,12 @@ public class Page3ObjectMain {
         element.click();
     }
 
+    @Step("Show our jucier")
+    public void gotoCourt() {
+        closeCookie();
+        WebElement element = driver.findElement(By.xpath(OurJuicer));
+        element.click();
+    }
 
     @Step("Show our jucier")
     public void clickBut() {

@@ -1,7 +1,7 @@
 package ruOzon;
 
 import ruOzon.listeners.TestListener;
-import ruOzon.pages.Page4ObjectMain;
+import ruOzon.pages.PageJucierPower;
 import ruOzon.util.SupportTestSettings;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -16,7 +16,7 @@ public class FourthTest extends SupportTestSettings {
 
     @Test
     public void thirdTest() {
-        Page4ObjectMain pageObjectMain = new Page4ObjectMain(driver, webDriverWait);
+        PageJucierPower pageObjectMain = new PageJucierPower(driver, webDriverWait);
         pageObjectMain.clickCatalog();
         pageObjectMain.clickTech();
         pageObjectMain.clickJuicer();

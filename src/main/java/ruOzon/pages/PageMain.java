@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.Assert.assertEquals;
 
-public class Page1ObjectMain {
+public class PageMain {
 
     WebDriver driver;
     WebDriverWait webDriverWait;
@@ -29,7 +29,7 @@ public class Page1ObjectMain {
 
     private WebElement cityElement;
 
-    public Page1ObjectMain(WebDriver driver, WebDriverWait webDriverWait) {
+    public PageMain(WebDriver driver, WebDriverWait webDriverWait) {
         this.driver = driver;
         this.webDriverWait = webDriverWait;
     }
